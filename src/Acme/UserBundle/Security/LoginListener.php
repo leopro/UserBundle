@@ -2,6 +2,7 @@
 
 namespace Acme\UserBundle\Security;
 
+use Acme\UserBundle\Entity\UserWrapperInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\Security\Core\SecurityContext;
 use Doctrine\ORM\EntityManager;
@@ -25,7 +26,8 @@ class LoginListener
         if (is_object($user) && $user instanceof UserInterface) {
 
             $actor = $this->findActor($user);
-            if ($actor) {
+            if ($actor && $actor instanceof UserWrapperInterface) {
+                $actor->setUser($user);
                 $event->getAuthenticationToken()->setUser($actor);
             }
         }

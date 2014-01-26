@@ -104,8 +104,9 @@ class DemoControllerTest extends WebTestCase
         $crawler = $client->click($link);
 
         // check that the page is the right one
-        $this->assertCount(1, $crawler->filter('h1.title:contains("secured for Admins only!")'));
         $this->assertCount(1, $crawler->filter('h1.title:contains("Acme\DemoBundle\Entity\Player")'));
+        $this->assertRegExp('/UserWrapperInterface/', $crawler->filter('p')->eq(0)->text());
+        $this->assertRegExp('/UserInterface/', $crawler->filter('p')->eq(1)->text());
     }
 
     public function testSecureSectionAsCoach()
@@ -133,8 +134,9 @@ class DemoControllerTest extends WebTestCase
         $crawler = $client->click($link);
 
         // check that the page is the right one
-        $this->assertCount(1, $crawler->filter('h1.title:contains("secured for Admins only!")'));
         $this->assertCount(1, $crawler->filter('h1.title:contains("Acme\DemoBundle\Entity\Coach")'));
+        $this->assertRegExp('/UserWrapperInterface/', $crawler->filter('p')->eq(0)->text());
+        $this->assertRegExp('/UserInterface/', $crawler->filter('p')->eq(1)->text());
     }
     
     public function tearDown()

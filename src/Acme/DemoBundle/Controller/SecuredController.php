@@ -71,6 +71,9 @@ class SecuredController extends Controller
      */
     public function helloadminAction($name)
     {
-        return array('name' => get_class($this->getUser()));
+        return array(
+            'class' => get_class($this->getUser()),
+            'interfaces' => class_implements($this->getUser())
+        );
     }
 }
