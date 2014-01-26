@@ -13,15 +13,15 @@ use Acme\UserBundle\Entity\User;
 class UserProvider implements UserProviderInterface
 {
     /** @var \Doctrine\ORM\EntityManager */
-	private $em;
+    private $em;
 
     /**
      * @param EntityManager $em
      */
     public function __construct(EntityManager $em)
-	{
-		$this->em = $em;
-	}
+    {
+        $this->em = $em;
+    }
 
     /**
      * Loads the user for the given username.

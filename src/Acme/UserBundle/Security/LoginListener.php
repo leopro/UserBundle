@@ -9,15 +9,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class LoginListener
 {
-	/** @var \Doctrine\ORM\EntityManager */
-	private $em;
+    /** @var \Doctrine\ORM\EntityManager */
+    private $em;
 
     private $actors = array('AcmeDemoBundle:Player', 'AcmeDemoBundle:Coach');
 
     public function __construct(EntityManager $em)
-	{
-		$this->em = $em;
-	}
+    {
+        $this->em = $em;
+    }
 
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
     {
