@@ -35,6 +35,10 @@ class LoginListener
 
     protected function findActor(UserInterface $user, $count = 0)
     {
+        if (!array_key_exists($count, $this->actors)) {
+            return;
+        }
+
         $class = $this->actors[$count];
         $actor = $this->em->getRepository($class)->findOneBy(array('user' => $user));
         if (!$actor) {
